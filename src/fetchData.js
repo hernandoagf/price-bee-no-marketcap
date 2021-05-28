@@ -4,13 +4,15 @@ const dotenv = require('dotenv')
 
 dotenv.config()
 
-const SUBGRAPH_URL = 'https://api.thegraph.com/subgraphs/name/1hive/uniswap-v2'
+const SUBGRAPH_URL = 'https://api.thegraph.com/subgraphs/name/1hive/honeyswap-xdai'
 
 const PRICE_QUERY = gql`
   query {
-    token(id: "${process.env.TOKEN_ID}") {
-      derivedETH
-      symbol
+    pair(id: "${process.env.PAIR_ID}") {
+      token1Price
+      token1 {
+        symbol
+      }
     }
   }
 `
@@ -25,11 +27,11 @@ const fetchData = async () => {
 
 exports.getTokenPrice = async () => {
   const res = await fetchData()
-  const price = parseFloat(res.data.token.derivedETH).toFixed(2)
+  const price = parseFloat(res.data.pair.token1Price).toFixed(2)
   return price
 }
 
 exports.getTokenSymbol = async () => {
   const res = await fetchData()
-  return res.data.token.symbol
+  return res.data.pair.token1.symbol
 }
