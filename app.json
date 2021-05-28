@@ -6,6 +6,6 @@
   "keywords": ["node", "discord", "1Hive", "token"],
   "env": {
     "DISCORD_API_TOKEN": "YOUR_DISCORD_API_TOKEN",
-    "TOKEN_ID": "Your token ID"
+    "PAIR_ID": "Your pair ID"
   }
 }
