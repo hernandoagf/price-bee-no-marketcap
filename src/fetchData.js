@@ -10,7 +10,7 @@ const PRICE_QUERY = gql`
   query {
     pair(id: "${process.env.PAIR_ID}") {
       token1Price
-      token1 {
+      token0 {
         symbol
       }
     }
@@ -33,5 +33,5 @@ exports.getTokenPrice = async () => {
 
 exports.getTokenSymbol = async () => {
   const res = await fetchData()
-  return res.data.pair.token1.symbol
+  return res.data.pair.token0.symbol
 }
